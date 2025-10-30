@@ -1,10 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DadosPessoais">
+    tools:context=".DadosPessoais"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/nome_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome"
+        android:inputType="textPersonName"
+        android:layout_marginTop="15dp"/>
+    <EditText
+        android:id="@+id/idade_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Idade"
+        android:inputType="number"/>
+    <RadioGroup
+        android:id="@+id/sexo_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/sexo_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sexo:"
+            android:textSize="20sp"/>
+        <RadioButton
+            android:id="@+id/masculino_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Masculino"/>
+        <RadioButton
+            android:id="@+id/feminino_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Feminino"/>
+    </RadioGroup>
+    <EditText
+        android:id="@+id/altura_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Altura"
+        android:inputType="numberDecimal"/>
+    <EditText
+        android:id="@+id/peso_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Peso"
+        android:inputType="numberDecimal"/>
+    <Spinner
+        android:id="@+id/nivel_atividade_sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/spiner_nivel_atividade_fisica">
+    </Spinner>
+    <Button
+        android:id="@+id/calcular_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calcular"
+        android:layout_marginTop="15sp"
+        android:layout_gravity="center"/>
+
+
+</LinearLayout>

@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ImFitPlus">
         <activity
+            android:name=".CalculoPesoIdeal"
+            android:exported="false" />
+        <activity
+            android:name=".GastoCaloricoDiario"
+            android:exported="false" />
+        <activity
+            android:name=".ResultadoIMC"
+            android:exported="false" />
+        <activity
             android:name=".DadosPessoais"
             android:exported="false" />
         <activity

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ImFitPlus</string>
+    <string-array name="spiner_nivel_atividade_fisica">
+        <item>Sedentário</item>
+        <item>Leve</item>
+        <item>Moderado</item>
+        <item>Intenso</item>
+    </string-array>
 </resources>
