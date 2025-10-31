@@ -1,5 +1,6 @@
 package br.edu.ifsp.scl.ads.prdm.sc302072x.imfitplus
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -41,6 +42,27 @@ class ResultadoIMC : AppCompatActivity() {
         activityResultadoImcBinding.nomeTv.setText("Nome: ${nome}")
         activityResultadoImcBinding.imcTv.setText("IMC: %.2f".format(imc))
         activityResultadoImcBinding.categoriaTv.setText("Categoria: ${categoria}")
+
+
+        activityResultadoImcBinding.calcularGastoBt.setOnClickListener {
+            var i = Intent(this, GastoCaloricoDiario::class.java)
+
+            i.putExtra("nome", nome)
+            i.putExtra("idade", idade.toString())
+            i.putExtra("sexo", sexo)
+            i.putExtra("nivelAtividade", nivelAtividade)
+            i.putExtra("altura", altura.toString())
+            i.putExtra("peso", peso.toString())
+
+            startActivity(i)
+
+        }
+
+        activityResultadoImcBinding.voltarBt.setOnClickListener {
+            var iVoltar = Intent(this, DadosPessoais:: class.java)
+            startActivity(iVoltar)
+            finish()
+        }
 
 
     }

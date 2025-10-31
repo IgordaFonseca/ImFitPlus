@@ -56,9 +56,9 @@ class DadosPessoais : AppCompatActivity() {
             }
             var i = Intent (this, ResultadoIMC :: class.java)
             i.putExtra("nome", nome)
-            i.putExtra("idade", idade)
-            i.putExtra("altura", altura)
-            i.putExtra("peso", peso)
+            i.putExtra("idade", idade.toString())
+            i.putExtra("altura", altura.toString())
+            i.putExtra("peso", peso.toString())
             i.putExtra("nivelAtividade", nivelAtividade)
             i.putExtra("sexo", sexo)
             startActivity(i)

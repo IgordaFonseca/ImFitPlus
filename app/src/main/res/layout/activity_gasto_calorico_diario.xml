@@ -15,10 +15,10 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"/>
     <Button
-        android:id="@+id/calcular_tmb_bt"
+        android:id="@+id/calcular_peso_ideal_bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calcular TMB"/>
+        android:text="Calcular peso ideal"/>
     <Button
         android:id="@+id/voltar_bt"
         android:layout_width="wrap_content"
