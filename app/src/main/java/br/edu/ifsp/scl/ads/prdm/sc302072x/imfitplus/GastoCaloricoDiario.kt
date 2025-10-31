@@ -43,14 +43,26 @@ class GastoCaloricoDiario : AppCompatActivity() {
 
         activityGastoCaloricoBinding.calcularPesoIdealBt.setOnClickListener {
             val i  = Intent(this, CalculoPesoIdeal::class.java)
+            i.putExtra("nome", nome)
+            i.putExtra("idade", idade.toString())
+            i.putExtra("sexo", sexo)
+            i.putExtra("nivelAtividade", nivelAtividade)
             i.putExtra("altura", altura.toString())
-            i.putExtra("peso",peso.toString())
+            i.putExtra("peso", peso.toString())
 
             startActivity(i)
-
+            finish()
         }
         activityGastoCaloricoBinding.voltarBt.setOnClickListener {
             val iVoltar = Intent(this, ResultadoIMC::class.java)
+
+            iVoltar.putExtra("nome", nome)
+            iVoltar.putExtra("idade", idade.toString())
+            iVoltar.putExtra("sexo", sexo)
+            iVoltar.putExtra("nivelAtividade", nivelAtividade)
+            iVoltar.putExtra("altura", altura.toString())
+            iVoltar.putExtra("peso", peso.toString())
+
             startActivity(iVoltar)
             finish()
         }

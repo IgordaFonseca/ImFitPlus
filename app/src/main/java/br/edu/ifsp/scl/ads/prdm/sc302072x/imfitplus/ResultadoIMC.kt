@@ -55,6 +55,7 @@ class ResultadoIMC : AppCompatActivity() {
             i.putExtra("peso", peso.toString())
 
             startActivity(i)
+            finish()
 
         }
 

@@ -18,8 +18,12 @@ class CalculoPesoIdeal : AppCompatActivity() {
         setContentView(activityCalculoPesoIdealBinding.root)
 
         val i = intent
-        val altura = i.extras?.getString("altura")?.toFloatOrNull()
+        val nome = i.extras?.getString("nome")
+        val altura  = i.extras?.getString("altura")?.toFloatOrNull()
+        val sexo = i.extras?.getString("sexo")
+        val nivelAtividade = i.extras?.getString("nivelAtividade")
         val peso = i.extras?.getString("peso")?.toFloatOrNull()
+        val idade = i.extras?.getString("idade")?.toIntOrNull()
         var pesoIdeal: Float = 0.0f
         var difPeso: Float = 0.0f
 
@@ -30,10 +34,17 @@ class CalculoPesoIdeal : AppCompatActivity() {
             Toast.makeText(this, "Dados invalidos", Toast.LENGTH_SHORT).show()
         }
         activityCalculoPesoIdealBinding.pesoIdealTv.setText("Peso ideial: %.2f".format(pesoIdeal))
-        activityCalculoPesoIdealBinding.diferencaPesoIdealTv.setText("Diferença de peso para peso ideial: %.2f".format(difPeso))
+        activityCalculoPesoIdealBinding.diferencaPesoIdealTv.setText("Diferença de peso para peso ideal: %.2f".format(difPeso))
 
         activityCalculoPesoIdealBinding.voltarBt.setOnClickListener {
             val i = Intent(this, GastoCaloricoDiario::class.java)
+
+            i.putExtra("nome", nome)
+            i.putExtra("idade", idade.toString())
+            i.putExtra("sexo", sexo)
+            i.putExtra("nivelAtividade", nivelAtividade)
+            i.putExtra("altura", altura.toString())
+            i.putExtra("peso", peso.toString())
             startActivity(i)
             finish()
         }
