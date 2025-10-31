@@ -24,10 +24,11 @@ class GastoCaloricoDiario : AppCompatActivity() {
         val peso = i.extras?.getString("peso")?.toFloatOrNull()
         val idade = i.extras?.getString("idade")?.toIntOrNull()
         var tbm: Double = 0.0
+        var constNivelAtividade: Double = 0.0
 
         if(sexo=="Masculino"){
             if(peso !=null && peso >0 && altura != null && altura > 0 && idade != null && idade > 0 ){
-                tbm = 66+(13.5*peso) + (5*altura*100) - (6.8*idade)
+                tbm = 66+(13.7*peso) + (5*altura*100) - (6.8*idade)
             }else{
                 Toast.makeText(this, "Dados invalidos", Toast.LENGTH_SHORT).show()
             }
@@ -39,7 +40,19 @@ class GastoCaloricoDiario : AppCompatActivity() {
             }
         }
 
-        activityGastoCaloricoBinding.gastoCaloricoTv.setText("TBM = %.2f".format(tbm))
+        constNivelAtividade = when(nivelAtividade?.lowercase()){
+            "sedentário"  ->  1.2
+            "leve" -> 1.375
+            "moderado" -> 1.55
+            "intenso" -> 1.725
+            else -> 1.2
+        }
+
+        val gastoCalorico = tbm * constNivelAtividade
+
+        activityGastoCaloricoBinding.gastoCaloricoTv.setText(("TBM = %.2f, constante de nivel de atividade: %.3f, " +
+                "gasto calórico diario: %.2f").format(tbm, constNivelAtividade, gastoCalorico))
+
 
         activityGastoCaloricoBinding.calcularPesoIdealBt.setOnClickListener {
             val i  = Intent(this, CalculoPesoIdeal::class.java)

@@ -39,6 +39,9 @@ class ResultadoIMC : AppCompatActivity() {
             categoria = "Obesidade"
         }
 
+
+
+
         activityResultadoImcBinding.nomeTv.setText("Nome: ${nome}")
         activityResultadoImcBinding.imcTv.setText("IMC: %.2f".format(imc))
         activityResultadoImcBinding.categoriaTv.setText("Categoria: ${categoria}")
