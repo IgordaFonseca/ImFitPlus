@@ -5,27 +5,39 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CalculoPesoIdeal"
+    tools:context=".ResumoDaSaude"
     android:orientation="vertical"
     android:gravity="center">
-
+    <TextView
+        android:id="@+id/nome_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/imc_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/imc_categoria_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"/>
     <TextView
         android:id="@+id/peso_ideal_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textAlignment="center"/>
+        android:textSize="20sp"/>
     <TextView
-        android:id="@+id/diferenca_peso_ideal_tv"
+        android:id="@+id/gasto_calorico_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textAlignment="center"/>
-    <Button
-        android:id="@+id/resumo_bt"
-        android:layout_width="wrap_content"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/recomendacao_ingestao_agua_tv"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Resumo"/>
+        android:textSize="20sp"/>
     <Button
         android:id="@+id/voltar_bt"
         android:layout_width="wrap_content"

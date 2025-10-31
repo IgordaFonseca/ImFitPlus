@@ -56,6 +56,8 @@ class ResultadoIMC : AppCompatActivity() {
             i.putExtra("nivelAtividade", nivelAtividade)
             i.putExtra("altura", altura.toString())
             i.putExtra("peso", peso.toString())
+            i.putExtra("imc",imc.toString())
+            i.putExtra("categoria", categoria)
 
             startActivity(i)
             finish()

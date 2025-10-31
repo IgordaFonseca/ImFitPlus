@@ -23,6 +23,8 @@ class GastoCaloricoDiario : AppCompatActivity() {
         val nivelAtividade = i.extras?.getString("nivelAtividade")
         val peso = i.extras?.getString("peso")?.toFloatOrNull()
         val idade = i.extras?.getString("idade")?.toIntOrNull()
+        val imc = i.extras?.getString("imc")
+        val categoria = i.extras?.getByte("categoria")
         var tbm: Double = 0.0
         var constNivelAtividade: Double = 0.0
 
@@ -62,6 +64,9 @@ class GastoCaloricoDiario : AppCompatActivity() {
             i.putExtra("nivelAtividade", nivelAtividade)
             i.putExtra("altura", altura.toString())
             i.putExtra("peso", peso.toString())
+            i.putExtra("categoria", categoria)
+            i.putExtra("imc", imc)
+            i.putExtra("gastoCalorico", gastoCalorico).toString()
 
             startActivity(i)
             finish()
@@ -75,6 +80,8 @@ class GastoCaloricoDiario : AppCompatActivity() {
             iVoltar.putExtra("nivelAtividade", nivelAtividade)
             iVoltar.putExtra("altura", altura.toString())
             iVoltar.putExtra("peso", peso.toString())
+            iVoltar.putExtra("imc", imc.toString())
+            iVoltar.putExtra("categoria", categoria.toString())
 
             startActivity(iVoltar)
             finish()

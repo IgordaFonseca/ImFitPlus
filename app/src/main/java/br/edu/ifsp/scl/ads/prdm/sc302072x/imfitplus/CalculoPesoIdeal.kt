@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import br.edu.ifsp.scl.ads.prdm.sc302072x.imfitplus.databinding.ActivityCalculoPesoIdealBinding
 
 class CalculoPesoIdeal : AppCompatActivity() {
@@ -24,6 +22,9 @@ class CalculoPesoIdeal : AppCompatActivity() {
         val nivelAtividade = i.extras?.getString("nivelAtividade")
         val peso = i.extras?.getString("peso")?.toFloatOrNull()
         val idade = i.extras?.getString("idade")?.toIntOrNull()
+        val categoria = i.extras?.getString("categoria")
+        val imc = i.extras?.getString("imc")
+        val gastoCalorico = i.extras?.getString("gastoCalorico")
         var pesoIdeal: Float = 0.0f
         var difPeso: Float = 0.0f
 
@@ -36,8 +37,8 @@ class CalculoPesoIdeal : AppCompatActivity() {
         activityCalculoPesoIdealBinding.pesoIdealTv.setText("Peso ideial: %.2f".format(pesoIdeal))
         activityCalculoPesoIdealBinding.diferencaPesoIdealTv.setText("Diferença de peso para peso ideal: %.2f".format(difPeso))
 
-        activityCalculoPesoIdealBinding.voltarBt.setOnClickListener {
-            val i = Intent(this, GastoCaloricoDiario::class.java)
+        activityCalculoPesoIdealBinding.resumoBt.setOnClickListener {
+            val i = Intent(this, ResumoDaSaude::class.java)
 
             i.putExtra("nome", nome)
             i.putExtra("idade", idade.toString())
@@ -45,7 +46,28 @@ class CalculoPesoIdeal : AppCompatActivity() {
             i.putExtra("nivelAtividade", nivelAtividade)
             i.putExtra("altura", altura.toString())
             i.putExtra("peso", peso.toString())
+            i.putExtra("categoria", categoria)
+            i.putExtra("imc", imc)
+            i.putExtra("gastoCalorico", gastoCalorico)
+            i.putExtra("pesoIdeal", pesoIdeal).toString()
+
             startActivity(i)
+            finish()
+        }
+
+        activityCalculoPesoIdealBinding.voltarBt.setOnClickListener {
+            val iVolta = Intent(this, GastoCaloricoDiario::class.java)
+
+            iVolta.putExtra("nome", nome)
+            iVolta.putExtra("idade", idade.toString())
+            iVolta.putExtra("sexo", sexo)
+            iVolta.putExtra("nivelAtividade", nivelAtividade)
+            iVolta.putExtra("altura", altura.toString())
+            iVolta.putExtra("peso", peso.toString())
+            i.putExtra("categoria", categoria)
+            i.putExtra("imc", imc)
+            i.putExtra("gastoCalorico", gastoCalorico)
+            startActivity(iVolta)
             finish()
         }
     }

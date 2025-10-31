@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ImFitPlus">
         <activity
+            android:name=".ResumoSaude"
+            android:exported="false" />
+        <activity
+            android:name=".ResumoDaSaude"
+            android:exported="false" />
+        <activity
             android:name=".CalculoPesoIdeal"
             android:exported="false" />
         <activity
