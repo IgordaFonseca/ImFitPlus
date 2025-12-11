@@ -3,10 +3,7 @@ package br.edu.ifsp.scl.ads.prdm.sc302072x.imfitplus
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import br.edu.ifsp.scl.ads.prdm.sc302072x.imfitplus.databinding.ActivityGastoCaloricoDiarioBinding
 
 class GastoCaloricoDiario : AppCompatActivity() {
@@ -25,18 +22,18 @@ class GastoCaloricoDiario : AppCompatActivity() {
         val idade = i.extras?.getString("idade")?.toIntOrNull()
         val imc = i.extras?.getString("imc")
         val categoria = i.extras?.getByte("categoria")
-        var tbm: Double = 0.0
+        var tmb: Double = 0.0
         var constNivelAtividade: Double = 0.0
 
         if(sexo=="Masculino"){
             if(peso !=null && peso >0 && altura != null && altura > 0 && idade != null && idade > 0 ){
-                tbm = 66+(13.7*peso) + (5*altura*100) - (6.8*idade)
+                tmb = 66+(13.7*peso) + (5*altura*100) - (6.8*idade)
             }else{
                 Toast.makeText(this, "Dados invalidos", Toast.LENGTH_SHORT).show()
             }
         }else{
             if(peso !=null && peso >0 && altura != null && altura > 0 && idade != null && idade > 0 ){
-                tbm = 655+(9.6*peso) + (1.8*altura*100) - (4.7*idade)
+                tmb = 655+(9.6*peso) + (1.8*altura*100) - (4.7*idade)
             }else{
                 Toast.makeText(this, "Dados invalidos", Toast.LENGTH_SHORT).show()
             }
@@ -50,10 +47,10 @@ class GastoCaloricoDiario : AppCompatActivity() {
             else -> 1.2
         }
 
-        val gastoCalorico = tbm * constNivelAtividade
+        val gastoCalorico = tmb * constNivelAtividade
 
-        activityGastoCaloricoBinding.gastoCaloricoTv.setText(("TBM = %.2f, constante de nivel de atividade: %.3f, " +
-                "gasto calórico diario: %.2f").format(tbm, constNivelAtividade, gastoCalorico))
+        activityGastoCaloricoBinding.gastoCaloricoTv.setText(("TMB = %.2f, constante de nivel de atividade: %.3f, " +
+                "gasto calórico diario: %.2f").format(tmb, constNivelAtividade, gastoCalorico))
 
 
         activityGastoCaloricoBinding.calcularPesoIdealBt.setOnClickListener {
@@ -66,7 +63,8 @@ class GastoCaloricoDiario : AppCompatActivity() {
             i.putExtra("peso", peso.toString())
             i.putExtra("categoria", categoria)
             i.putExtra("imc", imc)
-            i.putExtra("gastoCalorico", gastoCalorico).toString()
+            i.putExtra("gastoCalorico", gastoCalorico.toString())
+            i.putExtra("tmb", tmb.toString())
 
             startActivity(i)
             finish()
