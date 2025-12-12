@@ -2,6 +2,7 @@ package br.edu.ifsp.scl.ads.prdm.sc302072x.imfitplus
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +36,8 @@ class CalculoPesoIdeal : AppCompatActivity() {
         }else{
             Toast.makeText(this, "Dados invalidos", Toast.LENGTH_SHORT).show()
         }
+
+
         activityCalculoPesoIdealBinding.pesoIdealTv.setText("Peso ideial: %.2f".format(pesoIdeal))
         activityCalculoPesoIdealBinding.diferencaPesoIdealTv.setText("Diferença de peso para peso ideal: %.2f".format(difPeso))
 

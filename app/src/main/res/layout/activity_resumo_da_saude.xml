@@ -43,5 +43,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Voltar"/>
+    <Button
+        android:id="@+id/voltar_inicio_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tela inicial"/>
 
 </LinearLayout>

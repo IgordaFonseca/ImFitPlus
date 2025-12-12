@@ -75,10 +75,21 @@ class ResumoDaSaude : AppCompatActivity() {
             "Recomendação de ingestão de água: -"
         }
 
-        val usuario = Usuario(nome, idade, altura, sexo, peso, nivelAtividade, imc, categoria, tmb, pesoIdeal)
+        //val usuario = Usuario(nome, idade, altura, sexo, peso, nivelAtividade, imc, categoria, tmb, pesoIdeal)
 
-        //log para teste
-        Log.d("ResumoDaSaude", "Categoria recebida no intent = '$categoria'")
+        val usuario = Usuario(
+            nome = nome,
+            idade = idade,
+            altura = altura,
+            sexo = sexo,
+            peso = peso,
+            nivelAtividade = nivelAtividade,
+            imc = imc,
+            categoriaImc = categoria,
+            tmb = tmb,
+            pesoIdeal = pesoIdeal
+        )
+
 
         usuarioController.inserirUsuario(usuario)
 
@@ -98,6 +109,11 @@ class ResumoDaSaude : AppCompatActivity() {
 
 
             startActivity(iVolta)
+            finish()
+        }
+
+        binding.voltarInicioBt.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }

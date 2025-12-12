@@ -22,6 +22,11 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
+        activityMainbiding.listarUsuariosBt.setOnClickListener {
+            startActivity(Intent(this, ListarUsuarios::class.java))
+            finish()
+        }
+
 
     }
 }

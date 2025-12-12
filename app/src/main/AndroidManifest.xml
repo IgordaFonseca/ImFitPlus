@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ImFitPlus">
         <activity
+            android:name=".ListarUsuarios"
+            android:exported="false" />
+        <activity
+            android:name=".listar_usuarios"
+            android:exported="false" />
+        <activity
             android:name=".ResumoSaude"
             android:exported="false" />
         <activity

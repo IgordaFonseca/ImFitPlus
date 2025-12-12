@@ -3,6 +3,7 @@ package br.edu.ifsp.scl.ads.prdm.sc302072x.imfitplus.model
 import android.content.ContentValues
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import br.edu.ifsp.scl.ads.prdm.sc302072x.imfitplus.R
@@ -57,26 +58,39 @@ class UsuarioSqlite(context: Context) : UsuarioDao {
         return usuarioDataBase.insert(USUARIO_TABLE,null,usuario.toContentValues())
     }
 
-    override fun consultarUsuario(nome: String): Usuario {
-        val cursor = usuarioDataBase.query( USUARIO_TABLE,  "$NOME_COLUMN = ?", arrayOf(nome), null, null, null, null)
-       return if(cursor.moveToFirst()){
-
-       }else{
-           Usuario()
+    override fun consultarUsuario(nome: String): Usuario? {
+        val cursor = usuarioDataBase.query( USUARIO_TABLE,null,  "$NOME_COLUMN = ?", arrayOf(nome), null, null, null, null)
+       val usuarioEncontrado = if(cursor.moveToFirst()){
+          cursor.toUsuario() // essa função subtitui o construtor do usuário pra não ter que ficar digitando o construtor de novo
+       }else {
+           null
        }
+        cursor.close()
+        return usuarioEncontrado
     }
 
-    override fun consltuarCOntatos(): MutableList<Usuario> {
-        TODO("Not yet implemented")
+    override fun consltuarUsuarios(): MutableList<Usuario> {
+        val listaUsuarios : MutableList<Usuario> = mutableListOf()
+        val cursor = usuarioDataBase.rawQuery("SELECT * FROM $USUARIO_TABLE;",null)
+
+        while (cursor.moveToNext()){
+           listaUsuarios.add(cursor.toUsuario())
+        }
+        return listaUsuarios
     }
 
-    override fun atuallizarUsuario(usuario: Usuario): Int {
-        TODO("Not yet implemented")
-    }
+    override fun atuallizarUsuario(usuario: Usuario): Int = usuarioDataBase.update(
+        USUARIO_TABLE,
+        usuario.toContentValues(),
+        "$NOME_COLUMN = ?",
+        arrayOf(usuario.nome)
+    )
 
-    override fun deletarUsuario(nome: String): Int {
-        TODO("Not yet implemented")
-    }
+    override fun deletarUsuario(nome: String): Int = usuarioDataBase.delete(
+        USUARIO_TABLE,
+        "$NOME_COLUMN = ?",
+        arrayOf(nome)
+    )
     private fun Usuario.toContentValues() = ContentValues().apply {
         put(NOME_COLUMN, nome)
         put(IDADE_COLUMN, idade)
@@ -89,4 +103,21 @@ class UsuarioSqlite(context: Context) : UsuarioDao {
         put(TMB_COLUMN, tmb)
         put(PESO_IDEAL_COLUMN, pesoIdeal)
     }
+
+    private fun Cursor.toUsuario(): Usuario {
+        return Usuario(
+            nome = getString(getColumnIndexOrThrow(NOME_COLUMN)),
+            idade = getInt(getColumnIndexOrThrow(IDADE_COLUMN)),
+            altura = getFloat(getColumnIndexOrThrow(ALTURA_COLUMN)).toFloat(),
+            sexo = getString(getColumnIndexOrThrow(SEXO_COLUMN)),
+            peso = getFloat(getColumnIndexOrThrow(PESO_COLUMN)).toFloat(),
+            nivelAtividade = getString(getColumnIndexOrThrow(NIVEL_ATIVIDADE_COLUMN)),
+            imc = getFloat(getColumnIndexOrThrow(IMC_COLUMN)).toFloat(),
+            categoriaImc = getString(getColumnIndexOrThrow(CATEGORIA_IMC_COLUMN)),
+            tmb = getDouble(getColumnIndexOrThrow(TMB_COLUMN)),
+            pesoIdeal = getFloat(getColumnIndexOrThrow(PESO_IDEAL_COLUMN)).toFloat()
+        )
+    }
+
+
 }

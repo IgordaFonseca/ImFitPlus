@@ -22,11 +22,20 @@
         android:id="@+id/comeceAqui_bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:layout_marginTop="20sp"
+        android:layout_marginTop="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:text="Comece Aqui"
         app:layout_constraintTop_toBottomOf="@+id/benVindo_tv"/>
+
+    <Button
+        android:id="@+id/listarUsuarios_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ver Usuarios Cadstrados"
+        app:layout_constraintTop_toBottomOf="@+id/comeceAqui_bt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

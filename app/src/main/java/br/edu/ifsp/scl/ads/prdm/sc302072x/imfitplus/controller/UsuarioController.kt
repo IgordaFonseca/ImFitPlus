@@ -12,4 +12,8 @@ class UsuarioController(private val context: Context) {
     private val usuarioDao: UsuarioDao = UsuarioSqlite(context)
 
     fun inserirUsuario(usuario: Usuario) = usuarioDao.criarUsuario(usuario)
+    fun getUsuario(nome: String): Usuario? = usuarioDao.consultarUsuario(nome)
+    fun getUsuarios() =  usuarioDao.consltuarUsuarios()
+    fun modificarUsuario(usuario: Usuario) = usuarioDao.atuallizarUsuario(usuario)
+    fun removerUsuario(nome: String) = usuarioDao.deletarUsuario(nome)
 }

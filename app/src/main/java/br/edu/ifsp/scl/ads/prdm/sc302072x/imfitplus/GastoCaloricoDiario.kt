@@ -2,6 +2,7 @@ package br.edu.ifsp.scl.ads.prdm.sc302072x.imfitplus
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc302072x.imfitplus.databinding.ActivityGastoCaloricoDiarioBinding
@@ -21,7 +22,7 @@ class GastoCaloricoDiario : AppCompatActivity() {
         val peso = i.extras?.getString("peso")?.toFloatOrNull()
         val idade = i.extras?.getString("idade")?.toIntOrNull()
         val imc = i.extras?.getString("imc")
-        val categoria = i.extras?.getByte("categoria")
+        val categoria = i.extras?.getString("categoria")
         var tmb: Double = 0.0
         var constNivelAtividade: Double = 0.0
 
@@ -48,6 +49,7 @@ class GastoCaloricoDiario : AppCompatActivity() {
         }
 
         val gastoCalorico = tmb * constNivelAtividade
+
 
         activityGastoCaloricoBinding.gastoCaloricoTv.setText(("TMB = %.2f, constante de nivel de atividade: %.3f, " +
                 "gasto calórico diario: %.2f").format(tmb, constNivelAtividade, gastoCalorico))
