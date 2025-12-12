@@ -25,6 +25,7 @@ class GastoCaloricoDiario : AppCompatActivity() {
         val categoria = i.extras?.getString("categoria")
         var tmb: Double = 0.0
         var constNivelAtividade: Double = 0.0
+        val modoEdicao = intent.getBooleanExtra("modoEdicao", false)
 
         if(sexo=="Masculino"){
             if(peso !=null && peso >0 && altura != null && altura > 0 && idade != null && idade > 0 ){
@@ -67,6 +68,7 @@ class GastoCaloricoDiario : AppCompatActivity() {
             i.putExtra("imc", imc)
             i.putExtra("gastoCalorico", gastoCalorico.toString())
             i.putExtra("tmb", tmb.toString())
+            i.putExtra("modoEdicao", modoEdicao)
 
             startActivity(i)
             finish()

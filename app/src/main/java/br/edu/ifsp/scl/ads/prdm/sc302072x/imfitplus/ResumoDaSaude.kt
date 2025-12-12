@@ -33,6 +33,7 @@ class ResumoDaSaude : AppCompatActivity() {
         val idade = extras?.getString("idade")?.toIntOrNull()
         val categoria = extras?.getString("categoria") ?: ""
         val tmb: Double? = extras?.getString("tmb")?.toDoubleOrNull()
+        val modoEdicao = intent.getBooleanExtra("modoEdicao", false)
 
 
         val imc = extras?.getString("imc")?.toFloatOrNull()
@@ -90,8 +91,13 @@ class ResumoDaSaude : AppCompatActivity() {
             pesoIdeal = pesoIdeal
         )
 
-
-        usuarioController.inserirUsuario(usuario)
+        if (modoEdicao) {
+            // usuário já existe → UPDATE
+            usuarioController.modificarUsuario(usuario)
+        } else {
+            // novo usuário → INSERT
+            usuarioController.inserirUsuario(usuario)
+        }
 
         binding.voltarBt.setOnClickListener {
             val iVolta = Intent(this, CalculoPesoIdeal::class.java)
@@ -106,6 +112,7 @@ class ResumoDaSaude : AppCompatActivity() {
             iVolta.putExtra("imc", imc?.toString() ?: "")
             iVolta.putExtra("gastoCalorico", gastoCalorico)
             iVolta.putExtra("pesoIdeal", pesoIdeal)
+
 
 
             startActivity(iVolta)

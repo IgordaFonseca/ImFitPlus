@@ -21,6 +21,7 @@ class ResultadoIMC : AppCompatActivity() {
         val nivelAtividade = i.extras?.getString("nivelAtividade")
         val altura= i.extras?.getString("altura")?.toFloatOrNull()
         val peso= i.extras?.getString("peso")?.toFloatOrNull()
+        val modoEdicao = intent.getBooleanExtra("modoEdicao", false)
 
         var imc: Float = 0.0F
         if (peso != null && peso > 0 &&  altura != null && altura > 0){
@@ -58,6 +59,7 @@ class ResultadoIMC : AppCompatActivity() {
             i.putExtra("peso", peso.toString())
             i.putExtra("imc",imc.toString())
             i.putExtra("categoria", categoria)
+            i.putExtra("modoEdicao", modoEdicao)
 
             startActivity(i)
             finish()

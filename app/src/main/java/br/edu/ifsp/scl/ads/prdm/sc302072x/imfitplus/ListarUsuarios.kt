@@ -37,6 +37,17 @@ class ListarUsuarios : AppCompatActivity() {
             finish()
         }
 
+        listarUsuariosBinding.usuariosLv.setOnItemClickListener { _, _, position, _ ->
+            val usuarioSelecionado = usuariosAdapter.getItem(position) ?: return@setOnItemClickListener
+
+            val i = Intent(this, DadosPessoais::class.java)
+            i.putExtra("modoEdicao", true)
+            i.putExtra("nome", usuarioSelecionado.nome)
+
+            startActivity(i)
+        }
+
+
     }
     override fun onResume() {
         super.onResume()

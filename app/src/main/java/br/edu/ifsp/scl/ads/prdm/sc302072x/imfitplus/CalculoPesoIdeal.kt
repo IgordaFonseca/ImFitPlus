@@ -29,6 +29,7 @@ class CalculoPesoIdeal : AppCompatActivity() {
         var pesoIdeal: Float = 0.0f
         var difPeso: Float = 0.0f
         val tmb: Double? = i.extras?.getString("tmb")?.toDoubleOrNull()
+        val modoEdicao = intent.getBooleanExtra("modoEdicao", false)
 
         if (altura != null && altura >0 &&  peso != null && peso > 0){
             pesoIdeal = 22*(altura*altura)
@@ -55,6 +56,7 @@ class CalculoPesoIdeal : AppCompatActivity() {
             i.putExtra("gastoCalorico", gastoCalorico)
             i.putExtra("pesoIdeal", pesoIdeal).toString()
             i.putExtra("tmb", tmb.toString())
+            i.putExtra("modoEdicao", modoEdicao)
 
             startActivity(i)
             finish()
