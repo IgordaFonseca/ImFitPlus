@@ -100,6 +100,22 @@ class DadosPessoais : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+           /*
+
+           criar o botão no xml
+
+           activityDadosPessoaisBinding.deletarBt.visibility =
+                if (modoEdicao) View.VISIBLE else View.GONE
+
+            if (modoEdicao) {
+                val nomeEdicao = intent.getStringExtra("nome") ?: ""
+
+                activityDadosPessoaisBinding.deletarBt.setOnClickListener {
+                    usuarioController.removerUsuario(nomeEdicao)
+                    finish() // volta para a lista
+                }
+            }*/
+
             val i = Intent(this, ResultadoIMC::class.java)
             i.putExtra("nome", nome)
             i.putExtra("idade", idade)
