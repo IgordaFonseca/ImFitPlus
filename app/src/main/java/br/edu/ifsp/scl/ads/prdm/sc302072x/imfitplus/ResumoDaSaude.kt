@@ -2,7 +2,6 @@ package br.edu.ifsp.scl.ads.prdm.sc302072x.imfitplus
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc302072x.imfitplus.controller.UsuarioController
@@ -34,10 +33,12 @@ class ResumoDaSaude : AppCompatActivity() {
         val categoria = extras?.getString("categoria") ?: ""
         val tmb: Double? = extras?.getString("tmb")?.toDoubleOrNull()
         val modoEdicao = intent.getBooleanExtra("modoEdicao", false)
-
+        val dataNascimento = extras?.getString("dataNascimento")
+        val fcmax = extras?.getInt("altura")
+        val zonaTreino = extras?.getString("zonaTreino")
 
         val imc = extras?.getString("imc")?.toFloatOrNull()
-        //val gastoCalorico = extras?.getDouble("gastoCalorico", 0.0) ?: 0.0
+
 
         val gastoCaloricoStr = extras?.getString("gastoCalorico")
         val gastoCaloricoFromString = gastoCaloricoStr
@@ -75,6 +76,12 @@ class ResumoDaSaude : AppCompatActivity() {
         } else {
             "Recomendação de ingestão de água: -"
         }
+        binding.frequanciaCardiacaTv.text = "FCMAX: $fcmax"
+        binding.zonaTreinoTv.text = "Zona de treino: $zonaTreino"
+
+
+
+
 
         //val usuario = Usuario(nome, idade, altura, sexo, peso, nivelAtividade, imc, categoria, tmb, pesoIdeal)
 
@@ -88,7 +95,10 @@ class ResumoDaSaude : AppCompatActivity() {
             imc = imc,
             categoriaImc = categoria,
             tmb = tmb,
-            pesoIdeal = pesoIdeal
+            pesoIdeal = pesoIdeal,
+            dataNascimento = dataNascimento,
+            fcmax = fcmax,
+            zonaTreino = zonaTreino
         )
 
         if (modoEdicao) {
@@ -112,6 +122,8 @@ class ResumoDaSaude : AppCompatActivity() {
             iVolta.putExtra("imc", imc?.toString() ?: "")
             iVolta.putExtra("gastoCalorico", gastoCalorico)
             iVolta.putExtra("pesoIdeal", pesoIdeal)
+            iVolta.putExtra("fcmax", fcmax)
+            iVolta.putExtra("zonaTreino",zonaTreino)
 
 
 

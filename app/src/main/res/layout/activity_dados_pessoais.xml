@@ -16,11 +16,11 @@
         android:inputType="textPersonName"
         android:layout_marginTop="15dp"/>
     <EditText
-        android:id="@+id/idade_et"
+        android:id="@+id/data_nascimento_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Idade"
-        android:inputType="number"/>
+        android:hint="Data de nascimento"
+        android:inputType="date"/>
     <RadioGroup
         android:id="@+id/sexo_rg"
         android:layout_width="match_parent"

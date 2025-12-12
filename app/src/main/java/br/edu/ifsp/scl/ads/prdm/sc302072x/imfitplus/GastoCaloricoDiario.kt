@@ -1,11 +1,14 @@
 package br.edu.ifsp.scl.ads.prdm.sc302072x.imfitplus
 
 import android.content.Intent
+import android.icu.util.LocaleData
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc302072x.imfitplus.databinding.ActivityGastoCaloricoDiarioBinding
+import java.time.LocalDate
+import java.time.Period
+import java.util.Date
 
 class GastoCaloricoDiario : AppCompatActivity() {
     private lateinit var activityGastoCaloricoBinding: ActivityGastoCaloricoDiarioBinding
@@ -20,12 +23,33 @@ class GastoCaloricoDiario : AppCompatActivity() {
         val sexo = i.extras?.getString("sexo")
         val nivelAtividade = i.extras?.getString("nivelAtividade")
         val peso = i.extras?.getString("peso")?.toFloatOrNull()
-        val idade = i.extras?.getString("idade")?.toIntOrNull()
+        val dataNascimento = i.extras?.getString("dataNascimento")
         val imc = i.extras?.getString("imc")
         val categoria = i.extras?.getString("categoria")
         var tmb: Double = 0.0
         var constNivelAtividade: Double = 0.0
         val modoEdicao = intent.getBooleanExtra("modoEdicao", false)
+
+        fun calcularIdade(dataNascimento: LocalDate): Int{
+            val dataAtual = LocalDate.now()
+            return Period.between(dataNascimento, dataAtual).years
+        }
+
+        val idade = calcularIdade(LocalDate.parse(dataNascimento))
+        val fcmax = 220 - idade
+
+        fun calcularZonaTreino (fcmax: Int): String{
+            if(fcmax>=50 || fcmax<=60){
+                return "Zona Leve"
+            }else if(fcmax>=61 || fcmax<=70){
+                return "Zona queima de gordura"
+            }else if(fcmax>=71 || fcmax<=80){
+                return "Zona aeróbica"
+            }else{
+                return "Zona anaeróbica"
+            }
+        }
+        val zonaTreino = calcularZonaTreino(fcmax)
 
         if(sexo=="Masculino"){
             if(peso !=null && peso >0 && altura != null && altura > 0 && idade != null && idade > 0 ){
@@ -59,7 +83,7 @@ class GastoCaloricoDiario : AppCompatActivity() {
         activityGastoCaloricoBinding.calcularPesoIdealBt.setOnClickListener {
             val i  = Intent(this, CalculoPesoIdeal::class.java)
             i.putExtra("nome", nome)
-            i.putExtra("idade", idade.toString())
+            i.putExtra("idade", dataNascimento.toString())
             i.putExtra("sexo", sexo)
             i.putExtra("nivelAtividade", nivelAtividade)
             i.putExtra("altura", altura.toString())
@@ -69,6 +93,9 @@ class GastoCaloricoDiario : AppCompatActivity() {
             i.putExtra("gastoCalorico", gastoCalorico.toString())
             i.putExtra("tmb", tmb.toString())
             i.putExtra("modoEdicao", modoEdicao)
+            i.putExtra("dataNascimento", dataNascimento)
+            i.putExtra("fcmax", fcmax)
+            i.putExtra("zonaTreino",zonaTreino)
 
             startActivity(i)
             finish()
@@ -77,13 +104,14 @@ class GastoCaloricoDiario : AppCompatActivity() {
             val iVoltar = Intent(this, ResultadoIMC::class.java)
 
             iVoltar.putExtra("nome", nome)
-            iVoltar.putExtra("idade", idade.toString())
+            iVoltar.putExtra("idade", dataNascimento.toString())
             iVoltar.putExtra("sexo", sexo)
             iVoltar.putExtra("nivelAtividade", nivelAtividade)
             iVoltar.putExtra("altura", altura.toString())
             iVoltar.putExtra("peso", peso.toString())
             iVoltar.putExtra("imc", imc.toString())
             iVoltar.putExtra("categoria", categoria.toString())
+            iVoltar.putExtra("dataNascimento", dataNascimento)
 
             startActivity(iVoltar)
             finish()

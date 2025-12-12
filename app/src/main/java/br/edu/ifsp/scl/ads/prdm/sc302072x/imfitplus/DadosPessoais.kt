@@ -54,7 +54,7 @@ class DadosPessoais : AppCompatActivity() {
 
             if (usuario != null) {
                 activityDadosPessoaisBinding.nomeEt.setText(usuario.nome)
-                activityDadosPessoaisBinding.idadeEt.setText(usuario.idade?.toString() ?: "")
+                activityDadosPessoaisBinding.dataNascimentoEt.setText(usuario.dataNascimento?.toString() ?: "")
                 activityDadosPessoaisBinding.alturaEt.setText(usuario.altura?.toString() ?: "")
                 activityDadosPessoaisBinding.pesoEt.setText(usuario.peso?.toString() ?: "")
 
@@ -84,7 +84,8 @@ class DadosPessoais : AppCompatActivity() {
 
         activityDadosPessoaisBinding.calcularBt.setOnClickListener {
             val nome = activityDadosPessoaisBinding.nomeEt.text.toString()
-            val idade = activityDadosPessoaisBinding.idadeEt.text.toString()
+            val dataNascimento = activityDadosPessoaisBinding.dataNascimentoEt.text.toString()
+            //val idade = activityDadosPessoaisBinding.idadeEt.text.toString()
             val chekedId = activityDadosPessoaisBinding.sexoRg.checkedRadioButtonId
             if (chekedId != -1) {
                 val radioButton = findViewById<RadioButton>(chekedId)
@@ -93,7 +94,7 @@ class DadosPessoais : AppCompatActivity() {
             val altura = activityDadosPessoaisBinding.alturaEt.text.toString()
             val peso = activityDadosPessoaisBinding.pesoEt.text.toString()
 
-            if (nome.isEmpty() || idade.isEmpty() || sexo.isEmpty() ||
+            if (nome.isEmpty() || dataNascimento.isEmpty() || sexo.isEmpty() ||
                 altura.isEmpty() || peso.isEmpty() || nivelAtividade.isEmpty()
             ) {
                 Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
@@ -118,7 +119,7 @@ class DadosPessoais : AppCompatActivity() {
 
             val i = Intent(this, ResultadoIMC::class.java)
             i.putExtra("nome", nome)
-            i.putExtra("idade", idade)
+            i.putExtra("dataNascimento", dataNascimento)
             i.putExtra("altura", altura)
             i.putExtra("peso", peso)
             i.putExtra("nivelAtividade", nivelAtividade)

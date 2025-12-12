@@ -24,6 +24,9 @@ class UsuarioSqlite(context: Context) : UsuarioDao {
         private val CATEGORIA_IMC_COLUMN = "categoriaImc"
         private val TMB_COLUMN = "tmb"
         private val PESO_IDEAL_COLUMN = "pesoIdeal"
+        private val DATA_NASCIMENTO_COLUMN = "dataNascimento"
+        private val FCMAX_COLUMN = "fcmax"
+        private val ZONA_TREINO_COLUMN = "zonaTreino"
 
         val CREATE_USUARIO_TABLE_STATEMENT = "CREATE TABLE IF NOT EXISTS $USUARIO_TABLE ( " +
                 "$NOME_COLUMN TEXT NOT NULL PRIMARY KEY, " +
@@ -35,7 +38,10 @@ class UsuarioSqlite(context: Context) : UsuarioDao {
                 "$IMC_COLUMN FLOAT NOT NULL, " +
                 "$CATEGORIA_IMC_COLUMN TEXT NOT NULL, " +
                 "$TMB_COLUMN DOUBLE NOT NULL, " +
-                "$PESO_IDEAL_COLUMN FLOAT NOT NULL);"
+                "$PESO_IDEAL_COLUMN FLOAT NOT NULL," +
+                "$DATA_NASCIMENTO_COLUMN TEXT NOT NULL" +
+                "$FCMAX_COLUMN TEXT NOT NULL" +
+                "$ZONA_TREINO_COLUMN NOT NULL);"
     }
 
     //Criando uma instancia do SQLite
@@ -102,6 +108,9 @@ class UsuarioSqlite(context: Context) : UsuarioDao {
         put(CATEGORIA_IMC_COLUMN, categoriaImc)
         put(TMB_COLUMN, tmb)
         put(PESO_IDEAL_COLUMN, pesoIdeal)
+        put(DATA_NASCIMENTO_COLUMN, dataNascimento)
+        put(FCMAX_COLUMN, fcmax)
+        put(ZONA_TREINO_COLUMN, zonaTreino)
     }
 
     private fun Cursor.toUsuario(): Usuario {
@@ -115,7 +124,10 @@ class UsuarioSqlite(context: Context) : UsuarioDao {
             imc = getFloat(getColumnIndexOrThrow(IMC_COLUMN)).toFloat(),
             categoriaImc = getString(getColumnIndexOrThrow(CATEGORIA_IMC_COLUMN)),
             tmb = getDouble(getColumnIndexOrThrow(TMB_COLUMN)),
-            pesoIdeal = getFloat(getColumnIndexOrThrow(PESO_IDEAL_COLUMN)).toFloat()
+            pesoIdeal = getFloat(getColumnIndexOrThrow(PESO_IDEAL_COLUMN)).toFloat(),
+            dataNascimento =  getString(getColumnIndexOrThrow(DATA_NASCIMENTO_COLUMN)),
+            fcmax = getInt(getColumnIndexOrThrow(FCMAX_COLUMN).toInt()),
+            zonaTreino = getString(getColumnIndexOrThrow(ZONA_TREINO_COLUMN))
         )
     }
 

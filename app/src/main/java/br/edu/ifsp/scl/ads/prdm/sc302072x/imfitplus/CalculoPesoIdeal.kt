@@ -22,7 +22,7 @@ class CalculoPesoIdeal : AppCompatActivity() {
         val sexo = i.extras?.getString("sexo")
         val nivelAtividade = i.extras?.getString("nivelAtividade")
         val peso = i.extras?.getString("peso")?.toFloatOrNull()
-        val idade = i.extras?.getString("idade")?.toIntOrNull()
+        val dataNascimento = i.extras?.getString("dataNascimento")?.toIntOrNull()
         val categoria = i.extras?.getString("categoria")
         val imc = i.extras?.getString("imc")
         val gastoCalorico = i.extras?.getString("gastoCalorico")
@@ -30,6 +30,8 @@ class CalculoPesoIdeal : AppCompatActivity() {
         var difPeso: Float = 0.0f
         val tmb: Double? = i.extras?.getString("tmb")?.toDoubleOrNull()
         val modoEdicao = intent.getBooleanExtra("modoEdicao", false)
+        val fcmax = i.extras?.getInt("altura")
+        val zonaTreino = i.extras?.getString("zonaTreino")
 
         if (altura != null && altura >0 &&  peso != null && peso > 0){
             pesoIdeal = 22*(altura*altura)
@@ -46,7 +48,7 @@ class CalculoPesoIdeal : AppCompatActivity() {
             val i = Intent(this, ResumoDaSaude::class.java)
 
             i.putExtra("nome", nome)
-            i.putExtra("idade", idade.toString())
+            i.putExtra("dataNascimento", dataNascimento.toString())
             i.putExtra("sexo", sexo)
             i.putExtra("nivelAtividade", nivelAtividade)
             i.putExtra("altura", altura.toString())
@@ -57,6 +59,8 @@ class CalculoPesoIdeal : AppCompatActivity() {
             i.putExtra("pesoIdeal", pesoIdeal).toString()
             i.putExtra("tmb", tmb.toString())
             i.putExtra("modoEdicao", modoEdicao)
+            i.putExtra("fcmax", fcmax)
+            i.putExtra("zonaTreino",zonaTreino)
 
             startActivity(i)
             finish()
@@ -66,7 +70,7 @@ class CalculoPesoIdeal : AppCompatActivity() {
             val iVolta = Intent(this, GastoCaloricoDiario::class.java)
 
             iVolta.putExtra("nome", nome)
-            iVolta.putExtra("idade", idade.toString())
+            iVolta.putExtra("dataNascimento", dataNascimento.toString())
             iVolta.putExtra("sexo", sexo)
             iVolta.putExtra("nivelAtividade", nivelAtividade)
             iVolta.putExtra("altura", altura.toString())
@@ -74,6 +78,8 @@ class CalculoPesoIdeal : AppCompatActivity() {
             i.putExtra("categoria", categoria)
             i.putExtra("imc", imc)
             i.putExtra("gastoCalorico", gastoCalorico)
+            iVolta.putExtra("fcmax", fcmax)
+            iVolta.putExtra("zonaTreino",zonaTreino)
             startActivity(iVolta)
             finish()
         }

@@ -2,10 +2,7 @@ package br.edu.ifsp.scl.ads.prdm.sc302072x.imfitplus
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import br.edu.ifsp.scl.ads.prdm.sc302072x.imfitplus.databinding.ActivityResultadoImcBinding
 
 class ResultadoIMC : AppCompatActivity() {
@@ -16,7 +13,7 @@ class ResultadoIMC : AppCompatActivity() {
         setContentView(activityResultadoImcBinding.root)
         val i = intent
         val nome = i.extras?.getString("nome")
-        var idade = i.extras?.getString("idade")
+        var dataNascimento = i.extras?.getString("dataNascimento")
         val sexo =  i.extras?.getString("sexo")
         val nivelAtividade = i.extras?.getString("nivelAtividade")
         val altura= i.extras?.getString("altura")?.toFloatOrNull()
@@ -52,7 +49,7 @@ class ResultadoIMC : AppCompatActivity() {
             var i = Intent(this, GastoCaloricoDiario::class.java)
 
             i.putExtra("nome", nome)
-            i.putExtra("idade", idade.toString())
+            i.putExtra("dataNascimento", dataNascimento.toString())
             i.putExtra("sexo", sexo)
             i.putExtra("nivelAtividade", nivelAtividade)
             i.putExtra("altura", altura.toString())
